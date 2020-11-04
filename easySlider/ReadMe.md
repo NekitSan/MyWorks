@@ -1,5 +1,7 @@
-# Ease slider | Разработан: NekitSan. GitHub: https://github.com/NekitSan
-	* Данная версия весьма специфична
+# Ease slider
+- Разработан: NekitSan. 
+- GitHub: https://github.com/NekitSan
+    * Данная версия весьма специфична
     * Слайдер динамический, при условии прописи переменных
     * Если вы добавляете или убираете "CheckPoints" или "Slides", то
     добьавляйте или убирайте их в html-файле и в js-файле
