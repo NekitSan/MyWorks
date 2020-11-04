@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="легкий слайдер, Слайдер, слайдер на js, слайдер на html+css+js, слайдер на html css js">
+    <meta name="description" content="Легкий слайдер, чтобы сделать его, требуются базовые знания js.">
+    <meta name="author" content="NekitSan | Vk: https://vk.com/tihonn99 | GitHub: https://github.com/NekitSan">
+    <meta name="isons" content='Icons made by https://www.flaticon.com/authors/smartline Smartline and taken from www.flaticon.com'>
+    <title>Легкий слайдер</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="slider--interface">
+
+                <div class="slider--controller">
+                    <div class="slider__button slider__button--left">
+                        <svg class="slider__icon active__icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>	<g>		<g>			<path d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256S397.385,0,256,0z M256,480				C132.288,480,32,379.712,32,256S132.288,32,256,32s224,100.288,224,224S379.712,480,256,480z"/>			<path d="M292.64,116.8l-128,128c-6.204,6.241-6.204,16.319,0,22.56l128,128l22.56-22.72L198.56,256L315.2,139.36L292.64,116.8z"				/>		</g>	</g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                    </div>
+                    <div class="slider__button slider__button--right">
+                        <svg class="slider__icon active__icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>	<g>		<g>			<path d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256S397.385,0,256,0z M256,480				C132.288,480,32,379.712,32,256S132.288,32,256,32s224,100.288,224,224S379.712,480,256,480z"/>			<path d="M292.64,116.8l-128,128c-6.204,6.241-6.204,16.319,0,22.56l128,128l22.56-22.72L198.56,256L315.2,139.36L292.64,116.8z"				/>		</g>	</g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                    </div>
+
+                    <div class="slider__button--items">
+                        <input type="radio" name="recent_works" value="0" checked>
+                        <input type="radio" name="recent_works" value="1">
+                        <input type="radio" name="recent_works" value="2">
+                    </div>
+                </div>
+
+                <div class="slider__slides">
+                    <div class="slide" style="background-color: antiquewhite;">
+                        1
+                    </div>
+                    <div class="slide deactiv" style="background-color: aquamarine;">
+                        2
+                    </div>
+                    <div class="slide deactiv" style="background-color: coral;">
+                        3
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="slider.js"></script>
+</body>
+</html>
