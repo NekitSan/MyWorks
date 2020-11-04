@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Переводчик с Англиского на Солнечный</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="shortcut icon" href="imager/favicon.ico" type="image/x-icon">
+</head>
+<body>
+	<div class="wrapper">
+			<header>
+				<nav>
+					Переводчик с Англиского на Солнечный, сделано специально для <b>Grace Brave</b>
+				</nav>
+			</header>
+			<section>
+				<div class="container">
+					<form name="Menu" class="menu">
+						<input type="radio" name="Lang" checked>
+						<input type="disabled" name="Lang" value="В разработке">
+					</form>
+					<form name="TextInputTranslate">
+						<textarea name="textLangeInput" cols="30" rows="10"></textarea>
+						<div class="cell-button">
+							<input type="button" class="button style-button" value="Перевести" onClick="translater();">
+	    					<input type="reset" class="style-button" value="Сброс">
+						</div>
+					</form>
+					<form name="TextOutputTranslate">
+						<textarea name="textLangeOutput" cols="30" rows="10"></textarea>
+						<div class="cell-button">
+							<input type="reset" class="style-button" value="Сброс">
+						</div>
+					</form>
+				</div>
+			</section>
+	</div>
+	<script src="js/script.js"></script>
+</body>
+</html>
