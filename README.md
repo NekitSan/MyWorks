@@ -1,5 +1,4 @@
 # MyWorks
-Здесь размещаются мои наработки
 * Ease slider
   - site: 
 * Grace_Brave_Language
