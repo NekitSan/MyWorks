@@ -1,99 +1,102 @@
-const VERSION = 0.9;
+const VERSION = 1.0;
 /*
     * Ease slider | Разработан: NekitSan. GitHub: https://github.com/NekitSan
 */
 let slider = {
     "CheckPoints" : {
-        "Block" : document.querySelector(".slider__button--items"),
-        "Elements" : [
-            document.querySelector(".slider__button--items input:nth-child(1)"),
-            document.querySelector(".slider__button--items input:nth-child(2)"),
-            document.querySelector(".slider__button--items input:nth-child(3)"),
-            document.querySelector(".slider__button--items input:nth-child(4)"),
-            document.querySelector(".slider__button--items input:nth-child(5)")
-        ]
+        "Quantity" : document.querySelector(".slider__button--items").children.length,
+        "Elements" : document.querySelector(".slider__button--items").children,
+        "Element" : document.querySelector(".slider__button--items")
     },
     "Buttons" : {
         "L" : document.querySelector(".slider__button--left"), 
         "R" : document.querySelector(".slider__button--right")
     },
-    "Slides" : [
-        document.querySelector(".slider__slides .slide:nth-child(1)"),
-        document.querySelector(".slider__slides .slide:nth-child(2)"),
-        document.querySelector(".slider__slides .slide:nth-child(3)"),
-        document.querySelector(".slider__slides .slide:nth-child(4)"),
-        document.querySelector(".slider__slides .slide:nth-child(5)")
-    ]
+    "Slides" : {
+        "Quantity" : document.querySelector(".slider__slides").children.length,
+        "Elements" : document.querySelector(".slider__slides").children,
+        "Block" : document.querySelector(".slider__slides")
+    },
+    maxQuantity(mod)
+    {
+        if(mod == "left")
+        {
+            return ( (slider.Slides.Quantity) - 1 );
+        }
+        else{
+            return ( (slider.Slides.Quantity) - 2 );
+        }
+    }
 };
 
-slider.CheckPoints.Block.onclick = function(e)
+if(slider.Slides.Quantity != slider.CheckPoints.Quantity)
 {
-    if(e.target.value != undefined)
+    alert("Ошибка: Не совпадает число слайдов с числом чекпоинтов!");
+}
+else
+{
+    slider.CheckPoints.Element.onclick = function(e)
     {
-        for (let i = 0; i < slider.Slides.length; i++) {
-            if(i == e.target.value)
-            {
-                slider.Slides[i].classList.remove("deactiv");
-            }
-            else
-            {
-                slider.Slides[i].classList.add("deactiv");
+        if(e.target.value != undefined)
+        {
+            for (let i = 0; i < slider.Slides.Quantity; i++) {
+                if(i == e.target.value)
+                {
+                    slider.Slides.Elements[i].classList.remove("deactiv");
+                }
+                else
+                {
+                    slider.Slides.Elements[i].classList.add("deactiv");
+                }
             }
         }
     }
-}
-
-slider.Buttons.L.onclick = function ()
-{
-    let sizeObject = (slider.Slides.length) - 1;
-
-    for (let i = 0; i < slider.Slides.length; i++) {
-        if(slider.Slides[i].classList.contains("deactiv") == false)
-        {
-            if(i < 1)
+    
+    slider.Buttons.L.onclick = function ()
+    {
+        for (let i = 0; i < slider.Slides.Quantity; i++) {
+            if(slider.Slides.Elements[i].classList.contains("deactiv") == false)
             {
-                slider.Slides[0].classList.add("deactiv");
-                slider.Slides[sizeObject].classList.remove("deactiv");
-
-                slider.CheckPoints.Elements[0].checked = "";
-                slider.CheckPoints.Elements[sizeObject].checked = "checked";
+                if(i < 1)
+                {
+                    slider.Slides.Elements[i].classList.add("deactiv");
+                    slider.Slides.Elements[slider.maxQuantity('left')].classList.remove("deactiv");
+    
+                    slider.CheckPoints.Elements[slider.maxQuantity('left')].checked = "checked";
+                }
+                else
+                {
+                    slider.Slides.Elements[i].classList.add("deactiv");
+                    slider.Slides.Elements[i-1].classList.remove("deactiv");
+    
+                    slider.CheckPoints.Elements[i-1].checked = "checked";
+                }
+                break;
             }
-            else
-            {
-                slider.Slides[i].classList.add("deactiv");
-                slider.Slides[i-1].classList.remove("deactiv");
-
-                slider.CheckPoints.Elements[i].checked = "";
-                slider.CheckPoints.Elements[i-1].checked = "checked";
-            }
-            break;
         }
     }
-}
-slider.Buttons.R.onclick = function ()
-{
-    let sizeObject = (slider.Slides.length) - 2;
-
-    for (let i = 0; i < slider.Slides.length; i++) {
-        if(slider.Slides[i].classList.contains("deactiv") == false)
-        {
-            if(i > sizeObject)
+    
+    slider.Buttons.R.onclick = function ()
+    {
+        for (let i = 0; i < slider.Slides.Quantity; i++) {
+            if(slider.Slides.Elements[i].classList.contains("deactiv") == false)
             {
-                slider.Slides[i].classList.add("deactiv");
-                slider.Slides[0].classList.remove("deactiv");
-
-                slider.CheckPoints.Elements[i].checked = "";
-                slider.CheckPoints.Elements[0].checked = "checked";
+                if(i > slider.maxQuantity())
+                {
+                    slider.Slides.Elements[i].classList.add("deactiv");
+                    slider.Slides.Elements[0].classList.remove("deactiv");
+    
+                    slider.CheckPoints.Elements[0].checked = "checked";
+                }
+                else
+                {
+                    slider.Slides.Elements[i].classList.add("deactiv");
+                    slider.Slides.Elements[i+1].classList.remove("deactiv");
+    
+                    slider.CheckPoints.Elements[i+1].checked = "checked";
+                }
+                break;
             }
-            else
-            {
-                slider.Slides[i].classList.add("deactiv");
-                slider.Slides[i+1].classList.remove("deactiv");
-
-                slider.CheckPoints.Elements[i].checked = "";
-                slider.CheckPoints.Elements[i+1].checked = "checked";
-            }
-            break;
         }
     }
 }
