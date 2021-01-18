@@ -1,3 +1,4 @@
+// #Version 0.4
 class Slider
 {
     #buttonLeft = document.querySelector(".slider_control__button_left");
@@ -114,7 +115,6 @@ class Slider
         let trueArrChecks = Array.prototype.slice.call( this.chekpointList );
         let trueArrSlides = Array.prototype.slice.call( this.slideList );
         
-        // Перещелкивеи чеки
         if( e.target.classList.contains(this.chekpoint) == true )
         {
             if(e.target.parentElement.classList.contains(this.actChekpoint) == false)
@@ -131,29 +131,34 @@ class Slider
                 this.slideList[indexCheck].classList.add(this.actSlide);
 
                 this.preview.setAttribute("src", trueArrSlides[indexCheck].children[0].getAttribute("src"));
-                console.log("indexCheck", indexCheck);
             }
         }
 
-        // Перещелкивеи слайды
-        if(e.target.classList.contains(this.slide) == true )
+        if(e.target.classList.contains(this.slide) == true)
         {
-            console.log(e.target);
-            if(e.target.parentElement.classList.contains(this.actSlide) == false)
+            let indexSlide = trueArrSlides.indexOf(e.target); // Сам индекс
+            for(let i = 0; i < this.totalSlides; i++)
             {
-                let indexSlide = trueArrSlides.indexOf(e.target.parentElement); // Сам индекс
-
-                for(let i = 0; i < this.totalCheckpoints; i++)
-                {
-                    this.chekpointList[i].classList.remove(this.actChekpoint);
-                    this.slideList[i].classList.remove(this.actSlide);
-                }
-
-                e.target.parentElement.classList.add(this.actSlide);
-                this.chekpointList[indexSlide].classList.add(this.actChekpoint);
-
-                this.preview.setAttribute("src", trueArrSlides[indexSlide].children[0].getAttribute("src"));
+                this.chekpointList[i].classList.remove(this.actChekpoint);
+                this.slideList[i].classList.remove(this.actSlide);
             }
+
+            e.target.classList.add(this.actSlide);
+            this.chekpointList[indexSlide].classList.add(this.actChekpoint);
+            this.preview.setAttribute("src", trueArrSlides[indexSlide].children[0].getAttribute("src"));
+        }
+        else if(e.target.parentElement.classList.contains(this.slide) == true)
+        {
+            let indexSlide = trueArrSlides.indexOf(e.target.parentElement); // Сам индекс
+            for(let i = 0; i < this.totalSlides; i++)
+            {
+                this.chekpointList[i].classList.remove(this.actChekpoint);
+                this.slideList[i].classList.remove(this.actSlide);
+            }
+            
+            e.target.parentElement.classList.add(this.actSlide);
+            this.chekpointList[indexSlide].classList.add(this.actChekpoint);
+            this.preview.setAttribute("src", trueArrSlides[indexSlide].children[0].getAttribute("src"));  
         }
     }
 

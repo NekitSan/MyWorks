@@ -14,6 +14,17 @@ ul, li, ol {
     margin: 0 auto;
     user-select: none;
 }
+.slider__title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    font-size: 26px;
+    font-weight: 700;
+    font-family: "Roboto", sans-serif;
+    color: #fff;
+    z-index: 999;
+}
 
 
 .slider_preview {
