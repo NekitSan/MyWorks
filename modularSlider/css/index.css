@@ -50,47 +50,51 @@ ul, li, ol {
 .slider_control__button_left,
 .slider_control__button_right {
     position: absolute;
-    top: var(--btns-position-top, 225px);
+    top: 0;
+    height: 450px;
+    width: 24.5%;
+    background-color: rgba(0, 0, 0, .3);
+    transition: color ease .3s;
     font-weight: bold;
     font-size: 40px;
     color: #333;
     cursor: pointer;
-    transition: color ease .3s;
     z-index: 990;
+}
+.slider_control__button_left {
+    left: 0;
+}
+.slider_control__button_right {
+    right: 0;
+    transform: rotate(180deg);
 }
 
 .slider_control__button_left::after,
 .slider_control__button_right::after {
-    content: "";
+    content: "<";
     position: absolute;
-    top: 24px;
-    left: -2px;
+    top: var(--btns-position-top, 225px);
     display: block;
     width: 30px;
     height: 30px;
+    color:rgba(255, 255, 255, .3);
     transform: translate(0, -50%);
-    border: solid 1px #333;
-    border-radius: 50%;
-    transition: border-color ease .3s;
     z-index: 999;
 }
-
-.slider_control__button_left {
-    left: 22px;
-}
-.slider_control__button_right {
-    right: 22px;
-    transform: rotate(180deg);
+.slider_control__button_left::after,
+.slider_control__button_right::after {
+    left: 30px;
 }
 
-.slider_control__list_checkpoints {
+
+.slider_control__list_check {
     display: flex;
     width: 100%;
     justify-content: center;
     gap: 5px;
     margin: 7px 0;
 }
-.slider_control__checkpoint {
+.slider_control__check {
     position: relative;
     display: block;
     width: 32px;
@@ -100,14 +104,14 @@ ul, li, ol {
     border: var(--border-config, solid 1px #000);
     cursor: pointer;
 }
-.slider_control__checkpoint::after {
+.slider_control__check::after {
     content: "";
     position: absolute;
     top: 9px;
     left: 9px;
     display: block;
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
     background-color: var(--checkpoint-fill, black);
     border-radius: 50%;
     transition: opacity ease .3s;
@@ -150,14 +154,14 @@ ul, li, ol {
 
 .slider_control__button_left:hover,
 .slider_control__button_right:hover {
-    color: white;
+    background-color: rgba(0, 0, 0, .5);
 }
 .slider_control__button_left:hover::after,
 .slider_control__button_right:hover::after {
-    border-color: white;
+    color:rgba(255, 255, 255, .6)
 }
 
-.slider_control__checkpoint--active::after,
-.slider_control__checkpoint:hover::after {
+.slider_control__check--active::after,
+.slider_control__check:hover::after {
     opacity: 1;
 }

@@ -1,38 +1,38 @@
-// #Version 0.5
+// #Version 0.5.1
 class BigSlider
 {
-    #buttonLeft = document.querySelector(".slider_control__button_left");
-    #buttonRight = document.querySelector(".slider_control__button_right");
-    #buttonMoveChekpoint = document.querySelector(".slider_control__list_checkpoints");
-    #buttonMoveSlide = document.querySelector(".slider_list__slides");
-
     constructor()
     {
         this.preview = document.querySelector(".slider_preview__image img");
 
+        this.buttonLeft = document.querySelector(".slider_control__button_left");
+        this.buttonRight = document.querySelector(".slider_control__button_right");
 
-        this.chekpointList = document.querySelector(".slider_control__list_checkpoints").children;
-        this.totalCheckpoints = document.querySelector(".slider_control__list_checkpoints").children.length;
-        
-        this.slideList = document.querySelector(".slider_list__slides").children;
-        this.totalSlides = document.querySelector(".slider_list__slides").children.length;
+        this.controlSlide = document.querySelector(".slider_list__slides");
+        this.slideList = this.controlSlide.children;
+        this.totalSlides = this.controlSlide.children.length;
 
-        this.actChekpoint = "slider_control__checkpoint--active";
-        this.actSlide = "slider__slide--active";
+        this.controlCheck = document.querySelector(".slider_control__list_check");
+        this.chekList = this.controlCheck.children;
+        this.totalCheck = this.controlCheck.children.length;
         
-        this.chekpoint = "slider_control__checkpoint";
+        this.chek = "slider_control__check";
         this.slide = "slider__slide";
 
+        this.actChek = this.chek + "--active";
+        this.actSlide = this.slide + "--active";
+
         this.step = 1;
+
     }
 
     eventsAttach()
     {
-        this.#buttonLeft.addEventListener("click", this.bildLeftButton.bind(this) );
-        this.#buttonRight.addEventListener("click", this.bildRightButton.bind(this) );
+        this.buttonLeft.addEventListener("click", this.bildLeftButton.bind(this) );
+        this.buttonRight.addEventListener("click", this.bildRightButton.bind(this) );
 
-        this.#buttonMoveChekpoint.addEventListener("click", this.editCheckpointList.bind(this) );
-        this.#buttonMoveSlide.addEventListener("click", this.editSlideList.bind(this) );
+        this.controlCheck.addEventListener("click", this.editCheckList.bind(this) );
+        this.controlSlide.addEventListener("click", this.editSlideList.bind(this) );
     }
 
     bildLeftButton()
@@ -43,7 +43,7 @@ class BigSlider
             {
                 this.editPreviewButton("left", i);
                 this.editStyleSlideLeft(i);
-                this.editStyleCheckpointLeft(i);
+                this.editStyleCheckpLeft(i);
                 break;
             }
         } 
@@ -57,7 +57,7 @@ class BigSlider
             {
                 this.editPreviewButton("right", i);
                 this.editStyleSlideRight(i);
-                this.editStyleCheckpointRight(i);
+                this.editStyleCheckpRight(i);
                 break;
             }
         } 
@@ -104,17 +104,17 @@ class BigSlider
             this.slideList[param - this.step].classList.add(this.actSlide);
         }
     }
-    editStyleCheckpointLeft(param)
+    editStyleCheckpLeft(param)
     {
         if(param == 0)
         {
-            this.chekpointList[param].classList.remove(this.actChekpoint);
-            this.chekpointList[this.totalSlides - this.step].classList.add(this.actChekpoint);
+            this.chekList[param].classList.remove(this.actChek);
+            this.chekList[this.totalSlides - this.step].classList.add(this.actChek);
         }
         else
         {
-            this.chekpointList[param].classList.remove(this.actChekpoint);
-            this.chekpointList[param - this.step].classList.add(this.actChekpoint);
+            this.chekList[param].classList.remove(this.actChek);
+            this.chekList[param - this.step].classList.add(this.actChek);
         }
     }
     // Button right
@@ -131,17 +131,17 @@ class BigSlider
             this.slideList[param + this.step].classList.add(this.actSlide);
         }
     }
-    editStyleCheckpointRight(param)
+    editStyleCheckpRight(param)
     {
         if( param == (this.totalSlides - this.step) )
         {
-            this.chekpointList[param].classList.remove(this.actChekpoint);
-            this.chekpointList[0].classList.add(this.actChekpoint);
+            this.chekList[param].classList.remove(this.actChek);
+            this.chekList[0].classList.add(this.actChek);
         }
         else
         {
-            this.chekpointList[param].classList.remove(this.actChekpoint);
-            this.chekpointList[param + this.step].classList.add(this.actChekpoint);
+            this.chekList[param].classList.remove(this.actChek);
+            this.chekList[param + this.step].classList.add(this.actChek);
         }
     }
     // Edit Slide
@@ -154,12 +154,12 @@ class BigSlider
             let indexSlide = trueArrSlides.indexOf(e.target); // Сам индекс
             for(let i = 0; i < this.totalSlides; i++)
             {
-                this.chekpointList[i].classList.remove(this.actChekpoint);
+                this.chekList[i].classList.remove(this.actChek);
                 this.slideList[i].classList.remove(this.actSlide);
             }
 
             e.target.classList.add(this.actSlide);
-            this.chekpointList[indexSlide].classList.add(this.actChekpoint);
+            this.chekList[indexSlide].classList.add(this.actChek);
             this.preview.setAttribute("src", trueArrSlides[indexSlide].children[0].getAttribute("src"));
         }
         else if(e.target.parentElement.classList.contains(this.slide) == true)
@@ -167,34 +167,34 @@ class BigSlider
             let indexSlide = trueArrSlides.indexOf(e.target.parentElement); // Сам индекс
             for(let i = 0; i < this.totalSlides; i++)
             {
-                this.chekpointList[i].classList.remove(this.actChekpoint);
+                this.chekList[i].classList.remove(this.actChek);
                 this.slideList[i].classList.remove(this.actSlide);
             }
             
             e.target.parentElement.classList.add(this.actSlide);
-            this.chekpointList[indexSlide].classList.add(this.actChekpoint);
+            this.chekList[indexSlide].classList.add(this.actChek);
             this.preview.setAttribute("src", trueArrSlides[indexSlide].children[0].getAttribute("src"));  
         }
     }
     // Edit Checkpoint
-    editCheckpointList(e)
+    editCheckList(e)
     {
-        let trueArrChecks = Array.prototype.slice.call( this.chekpointList );
+        let trueArrChecks = Array.prototype.slice.call( this.chekList );
         let trueArrSlides = Array.prototype.slice.call( this.slideList );
         
-        if( e.target.classList.contains(this.chekpoint) == true )
+        if( e.target.classList.contains(this.chek) == true )
         {
-            if(e.target.parentElement.classList.contains(this.actChekpoint) == false)
+            if(e.target.parentElement.classList.contains(this.actChek) == false)
             {
                 let indexCheck = trueArrChecks.indexOf(e.target); // Сам индекс
 
-                for(let i = 0; i < this.totalCheckpoints; i++)
+                for(let i = 0; i < this.totalCheck; i++)
                 {
-                    this.chekpointList[i].classList.remove(this.actChekpoint);
+                    this.chekList[i].classList.remove(this.actChek);
                     this.slideList[i].classList.remove(this.actSlide);
                 }
 
-                e.target.classList.add(this.actChekpoint);
+                e.target.classList.add(this.actChek);
                 this.slideList[indexCheck].classList.add(this.actSlide);
 
                 this.preview.setAttribute("src", trueArrSlides[indexCheck].children[0].getAttribute("src"));
@@ -207,6 +207,11 @@ class BigSlider
        this.eventsAttach();
     }
 }
+
+// class EaseSlider extends BigSlider
+// {
+
+// }
 
 let bigSlider = new BigSlider();
 bigSlider.init();
