@@ -1,54 +1,37 @@
-*, *::after, *::before {
-    margin: 0;
-    padding: 0;
-}
-
-ul, li, ol {
-    list-style: none;
-}
-
 .slider {
     position: relative;
-    width: 80vw;
-    height: 100vh;
-    margin: 0 auto;
+    width: 100%;
     user-select: none;
 }
-.slider__title {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px;
-    font-size: 26px;
-    font-weight: 700;
-    font-family: "Roboto", sans-serif;
-    color: #fff;
-    z-index: 999;
-}
 
+.hidden {    
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
 
 .slider_preview {
-    width: 100%;
     background-color: gray;
 }
-.slider_preview__image {
+.slider_preview__cell {
     position: relative;
     width: 500px;
     height: 450px;
+
     margin: 0 auto;
     overflow: hidden;
 }
-.slider_preview__image img {
+.slider_preview__image {
     position: absolute;
     top: 50%;
     width: 100%;
     transform: translate(0, -50%);
 }
 
-
-.slider_control {}
-.slider_control__button_left,
-.slider_control__button_right {
+.slider__button_left,
+.slider__button_right {
     position: absolute;
     top: 0;
     height: 450px;
@@ -61,16 +44,16 @@ ul, li, ol {
     cursor: pointer;
     z-index: 990;
 }
-.slider_control__button_left {
+.slider__button_left {
     left: 0;
 }
-.slider_control__button_right {
+.slider__button_right {
     right: 0;
     transform: rotate(180deg);
 }
 
-.slider_control__button_left::after,
-.slider_control__button_right::after {
+.slider__button_left::after,
+.slider__button_right::after {
     content: "<";
     position: absolute;
     top: var(--btns-position-top, 225px);
@@ -81,20 +64,20 @@ ul, li, ol {
     transform: translate(0, -50%);
     z-index: 999;
 }
-.slider_control__button_left::after,
-.slider_control__button_right::after {
+.slider__button_left::after,
+.slider__button_right::after {
     left: 30px;
 }
 
 
-.slider_control__list_check {
+.slider__list_checkbox {
     display: flex;
     width: 100%;
     justify-content: center;
     gap: 5px;
     margin: 7px 0;
 }
-.slider_control__check {
+.slider__checkbox {
     position: relative;
     display: block;
     width: 32px;
@@ -104,7 +87,7 @@ ul, li, ol {
     border: var(--border-config, solid 1px #000);
     cursor: pointer;
 }
-.slider_control__check::after {
+.slider__checkbox::after {
     content: "";
     position: absolute;
     top: 9px;
@@ -118,10 +101,6 @@ ul, li, ol {
     opacity: 0;
 }
 
-
-.slider_list {
-    overflow: hidden;
-}
 .slider_list__slides {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -152,16 +131,16 @@ ul, li, ol {
     border-color:slategray;
 }
 
-.slider_control__button_left:hover,
-.slider_control__button_right:hover {
+.slider__button_left:hover,
+.slider__button_right:hover {
     background-color: rgba(0, 0, 0, .5);
 }
-.slider_control__button_left:hover::after,
-.slider_control__button_right:hover::after {
+.slider__button_left:hover::after,
+.slider__button_right:hover::after {
     color:rgba(255, 255, 255, .6)
 }
 
-.slider_control__check--active::after,
-.slider_control__check:hover::after {
+.slider__checkbox--active::after,
+.slider__checkbox:hover::after {
     opacity: 1;
 }
